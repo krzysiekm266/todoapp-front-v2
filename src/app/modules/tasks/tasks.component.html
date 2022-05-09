@@ -1,0 +1,13 @@
+
+<div class="tasks">
+  <a routerLink="/" routerLinkActive="router-link-active" >home</a>
+  <p>tasks works!</p>
+  <div class="list">
+
+    <app-task-item *ngFor="let task of tasks" [task]="task"
+      (onCompleteTask)="completeTask($event)"
+      (onDeleteTask)="deleteTask($event)">
+    </app-task-item>
+  </div>
+
+</div>

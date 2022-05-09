@@ -1,8 +1,102 @@
 @import "../variables.scss";
+
 .app {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: auto;
+
+  // border: solid 1px black;
+  margin-bottom: 8px;
+
+
+}
+
+.logo {
+  width:100%;
+  min-height: 100px;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.068);
+  //background-image: linear-gradient(to left, rgb(37, 36, 36),rgb(73, 72, 72));
+}
+
+.navigation {
+
+  display: flex;
+  overflow: visible;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+   width: 50%;
+  height: auto;
+  // border: solid 1px red;
+  border-radius: $menu-border-radius;
+  box-shadow: 3px 5px 5px black;
+
+  background-image: linear-gradient(45deg, rgba(255, 0, 0, 0.774),orange,yellow,rgba(0, 0, 255, 0.315),indigo,violet);
+}
+
+.nav-button {
+
   display: flex;
   align-items: center;
   justify-content: center;
-  width: auto;
+  width: 120px;
   height: auto;
+  min-height: 60px;
+  padding: 12px;
+
+  // border: solid 4px green  ;
+}
+
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: auto;
+  width: 100px;
+
+  text-decoration: none;
+  text-transform: capitalize;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: medium;
+  font-weight: bold;
+  color: black;
+  &::after {
+    position: absolute;
+    bottom: -28px;
+    visibility: hidden;
+    content: "";
+    width: 100px;
+    height: 10px;
+    border-radius: 50px;
+    background-color: black;
+
+  }
+  // background-color: $nav-button-bg-color;
+  &:hover {
+    color: rgb(166, 168, 201);
+
+  }
+}
+
+
+.nav-link-active::after {
+  visibility: visible;
+
+}
+.page {
+
+  margin: auto auto;
+  margin-top: 20px;
+  justify-content: flex-start;
+  width: 80%;
+
 }

@@ -1,0 +1,12 @@
+<div class="item">
+  <!-- <div>{{ task.id }}</div> -->
+  <div class="title">{{ task.title }}</div>
+  <div class="status">{{ task.completed ? 'Completed' : 'Incomplete' }}</div>
+  <div class="created-at">{{ task.created_at | date }}</div>
+  <div class="completed-at">{{ task.completed_at ? ' task.completed_at | date ':'---' }}</div>
+  <div class="menu">
+    <button (click)="deleteTask()" >Delete</button>
+    <button (click)="completeTask()">Complete</button>
+  </div>
+
+</div>

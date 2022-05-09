@@ -1,0 +1,67 @@
+@import "../../../../../variables.scss";
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px;
+  background-color: burlywood;
+  border: 2px solid black;
+  border-radius: $task-border-radius;
+
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 8px;
+  border-radius: $task-border-radius;
+  background-color: cadetblue;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $task-border-radius;
+  background-color: aquamarine;
+}
+
+.created-at {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $task-border-radius;
+  background-color: azure;
+  text-align: center;
+  min-width: 100px;
+}
+
+.completed-at {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $task-border-radius;
+  text-align: center;
+  min-width: 100px;
+}
+
+.menu {
+  display: flex;
+  margin-right: 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  button {
+    width: 100px;
+    height: 40px;
+
+    padding: 0 10px;
+
+  }
+
+}
