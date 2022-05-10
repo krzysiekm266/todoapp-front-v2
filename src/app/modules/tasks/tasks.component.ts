@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { TaskService } from '../../services/task.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Task } from 'src/app/task';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-tasks',
@@ -9,25 +10,33 @@ import { Task } from 'src/app/task';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
-   tasks:Task[] = [];
-  //  @Input() task:Task = {title:'', completed:false, created_at:new Date()};
+  taskList:Task[] = [];
+  controlTitle:FormControl = new FormControl('');
   constructor(private taskService:TaskService) {
 
   }
 
   ngOnInit(): void {
-     this.taskService.getTasks().subscribe( (tasks) =>{ this.tasks = tasks  });
+     this.taskService.getTasks().subscribe( (tasks) =>{ this.taskList = tasks  });
   }
 
-  addTask(task:Task) {
-    this.taskService.addTask(task).subscribe();
+  // addTask() {
+  //   const task:Task = {
+  //     title: this.controlTitle.value,
+  //     completed:false,
+  //     created_at:new Date(),
+  //   }
+  //   this.taskService.addTask(task).subscribe( (task) => { this.tasks.push(task)});
+  // }
+  updateTaskList(task:Task) {
+    this.taskList.push(task);
   }
 
   deleteTask(task:Task) {
     const id:number | undefined = task.id;
     this.taskService.deleteTask(task).subscribe(deleted => {
       if(deleted && id){
-        this.tasks = this.tasks.filter(item => item.id != id);
+        this.taskList = this.taskList.filter(item => item.id != id);
       }
     });
   }

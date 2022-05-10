@@ -1,6 +1,10 @@
+
 import { TaskService } from '../../../../services/task.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Task } from 'src/app/task';
+import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 
 @Component({
   selector: 'app-task-item',
@@ -8,16 +12,24 @@ import { Task } from 'src/app/task';
   styleUrls: ['./task-item.component.scss']
 })
 export class TaskItemComponent implements OnInit {
- @Input() task:Task = {title:'', completed:false, created_at:new Date()};
- @Output() onDeleteTask = new EventEmitter<Task>();
- @Output() onCompleteTask = new EventEmitter<Task>();
+  //fontawsome icons
+  faTrashCan = faTrashCan;
+  faPenToSquare = faPenToSquare;
+  faSquareCheck = faSquareCheck;
+  //input,output
+  @Input() task:Task = {title:'', completed:false, created_at:new Date()};
+  @Output() onDeleteTask = new EventEmitter<Task>();
+  @Output() onCompleteTask = new EventEmitter<Task>();
+  @Output() onEditTask = new EventEmitter<Task>();
+  //properties
+  status:boolean = false;
 
-  status:boolean ;
   constructor(private taskService:TaskService) {
-    this.status = this.task.completed;
+    //this.status = this.task.completed;
   }
 
   ngOnInit(): void {
+    this.status = this.task.completed;
   }
 
   deleteTask() {
@@ -25,7 +37,15 @@ export class TaskItemComponent implements OnInit {
   }
 
   completeTask() {
-    this.task.completed = !this.task.completed;
+
+    this.task.completed = true;
+    this.task.completed_at = new Date();
+    this.status = this.task.completed;
     return this.onCompleteTask.emit(this.task);
+  }
+
+  editTask() {
+    return this.onEditTask.emit(this.task);
+
   }
 }

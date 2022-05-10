@@ -1,0 +1,11 @@
+<div class="editor">
+  <form  #form="ngForm" (ngSubmit)="addTask()">
+    <fieldset>
+      <legend>New task</legend>
+
+      <input type="text" [formControl]="controlTitle" placeholder="task title...">
+
+      <button type="submit">Add</button>
+    </fieldset>
+  </form>
+</div>

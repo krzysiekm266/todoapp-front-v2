@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: 'tasks', loadChildren: () => import('./modules/tasks/tasks.module').then(m => m.TasksModule) },
   { path: 'about', loadChildren: () => import('./modules/about/about.module').then(m => m.AboutModule) },
+
+
 ];
 
 @NgModule({

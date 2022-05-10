@@ -1,0 +1,58 @@
+@import "../../../../../variables.scss";
+
+.editor {
+  display: flex;
+  flex-direction: column;
+
+  width: auto;
+ // border: 2px solid rgb(134, 18, 18);
+  padding: 16px;
+  form {
+
+    width: 100%;
+      legend {
+        background-color: aqua;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 6px;
+        text-align: center;
+        box-shadow: 2px 2px 5px black;
+        text-transform: capitalize;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        font-weight: bold;
+        color: black;
+        background-image: linear-gradient(45deg, rgba(255, 0, 0, 0.774),orange);
+      }
+
+      fieldset {
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px solid black;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px black;
+        min-height: 100px;
+      }
+
+      input[type="text"] {
+        min-height: 40px;
+        width:100%;
+        border-radius: 5px;
+        border-style: none;
+        padding: 8px;
+        box-shadow: 2px 2px 2px black;
+      }
+
+      button {
+        margin-left: 4px;
+        width: 100px;
+        height: 40px;
+        border-style: none;
+        box-shadow: 2px 2px 2px  black;
+        border-radius: 5px;
+      }
+  }
+
+}

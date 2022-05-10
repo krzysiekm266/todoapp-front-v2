@@ -1,12 +1,23 @@
 <div class="item">
   <!-- <div>{{ task.id }}</div> -->
+  <div class="status" [class.completed]="status"></div>
   <div class="title">{{ task.title }}</div>
-  <div class="status">{{ task.completed ? 'Completed' : 'Incomplete' }}</div>
-  <div class="created-at">{{ task.created_at | date }}</div>
-  <div class="completed-at">{{ task.completed_at ? ' task.completed_at | date ':'---' }}</div>
+  <div class="created-at">{{ task.created_at | date:'medium' }}</div>
+  <div class="completed-at">{{task.completed_at ? (task.completed_at | date:'medium') :'---'}}</div>
   <div class="menu">
-    <button (click)="deleteTask()" >Delete</button>
-    <button (click)="completeTask()">Complete</button>
-  </div>
+    <button class="delete" (click)="deleteTask()" >
+      <fa-icon [icon]="faTrashCan"  size="2x"></fa-icon>
+      <!-- Delete -->
+    </button>
+    <button class="edit" (click)="editTask()">
+      <fa-icon [icon]="faPenToSquare"  size="2x"></fa-icon>
+      <!-- Edit -->
+    </button>
+    <button class="complete" (click)="completeTask()">
+      <fa-icon [icon]="faSquareCheck" size="2x"></fa-icon>
+      <!-- Complete -->
+    </button>
 
+  </div>
 </div>
+

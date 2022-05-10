@@ -18,7 +18,7 @@ export class TaskService {
   }
 
   addTask(task:Task):Observable<Task> {
-    return this.http.post<Task>(this.taskUrl+'/store/'+task,task);
+    return this.http.post<Task>(this.taskUrl+'/store',task);
   }
 
   deleteTask(task:Task):Observable<Task> {
