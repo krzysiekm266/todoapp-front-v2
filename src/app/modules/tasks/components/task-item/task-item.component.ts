@@ -1,11 +1,10 @@
 
 import { TaskService } from '../../../../services/task.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Task } from 'src/app/task';
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faSquareCheck } from "@fortawesome/free-regular-svg-icons";
-
+import { Task } from "../../task";
 @Component({
   selector: 'app-task-item',
   templateUrl: './task-item.component.html',
@@ -23,17 +22,27 @@ export class TaskItemComponent implements OnInit {
   @Output() onEditTask = new EventEmitter<Task>();
   //properties
   status:boolean = false;
+  details:boolean = false;
 
   constructor(private taskService:TaskService) {
-    //this.status = this.task.completed;
+
   }
 
   ngOnInit(): void {
     this.status = this.task.completed;
   }
 
+  toggleDetails() {
+    this.details = !this.details;
+  }
+
   deleteTask() {
    return this.onDeleteTask.emit(this.task);
+  }
+
+  editTask() {
+    return this.onEditTask.emit(this.task);
+
   }
 
   completeTask() {
@@ -44,8 +53,5 @@ export class TaskItemComponent implements OnInit {
     return this.onCompleteTask.emit(this.task);
   }
 
-  editTask() {
-    return this.onEditTask.emit(this.task);
 
-  }
 }

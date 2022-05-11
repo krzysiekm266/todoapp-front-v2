@@ -1,37 +1,44 @@
-import { Observable } from 'rxjs';
 import { TaskService } from '../../services/task.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { Task } from 'src/app/task';
+import { Task } from 'src/app/modules/tasks/task';
 import { FormControl } from '@angular/forms';
-
+import { faHouseChimney } from "@fortawesome/free-solid-svg-icons";
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
-  taskList:Task[] = [];
+  //icons
+  faHouseChimney = faHouseChimney;
+  //properties
+  private taskList:Task[] = [];
   controlTitle:FormControl = new FormControl('');
-  constructor(private taskService:TaskService) {
 
+  constructor(private taskService:TaskService) {
   }
 
   ngOnInit(): void {
-     this.taskService.getTasks().subscribe( (tasks) =>{ this.taskList = tasks  });
+     this.taskService.getTasks().subscribe( tasks =>{ this.taskList = tasks  });
   }
 
-  // addTask() {
-  //   const task:Task = {
-  //     title: this.controlTitle.value,
-  //     completed:false,
-  //     created_at:new Date(),
-  //   }
-  //   this.taskService.addTask(task).subscribe( (task) => { this.tasks.push(task)});
-  // }
-  updateTaskList(task:Task) {
-    this.taskList.push(task);
+  getTasks() {
+    return this.taskList;
   }
 
+  /**
+   * intercept onTaskStored event and update taskList array
+   * @param task
+   */
+  addTask(task:Task) {
+    this.taskService.addTask(task).subscribe( task => { this.taskList.push(task) });
+  }
+
+  /**
+   * intercept onDeleteTask event, check task id ,
+   * delete task(backend) and remove it from taskList array
+   * @param task
+   */
   deleteTask(task:Task) {
     const id:number | undefined = task.id;
     this.taskService.deleteTask(task).subscribe(deleted => {
@@ -41,6 +48,11 @@ export class TasksComponent implements OnInit {
     });
   }
 
+  /**
+   *
+   * intercept onCompleteTask event and update task on tasksList array
+   * @param task
+   */
   completeTask(task:Task) {
     this.taskService.updateTask(task).subscribe();
   }

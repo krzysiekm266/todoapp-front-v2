@@ -1,13 +1,15 @@
-
+<!-- tasks-component -->
 <div class="tasks">
-  <a routerLink="/" routerLinkActive="router-link-active" >home</a>
 
+  <div class="home-button">
+    <fa-icon [icon]="faHouseChimney" size="2x"  routerLink="/"></fa-icon>
+  </div>
   <div class="editor">
-    <app-task-editor (onTaskStored)="updateTaskList($event)"></app-task-editor>
+    <app-task-editor (onAddTask)="addTask($event)"></app-task-editor>
   </div>
 
   <div class="list">
-    <app-task-item *ngFor="let task of taskList" [task]="task"
+    <app-task-item *ngFor="let task of getTasks()" [task]="task"
       (onCompleteTask)="completeTask($event)"
       (onDeleteTask)="deleteTask($event)">
     </app-task-item>

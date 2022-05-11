@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 
 
 @Component({
@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'todoapp-front-v2';
+
   constructor() {
 
   }
