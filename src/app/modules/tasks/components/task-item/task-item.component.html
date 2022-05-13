@@ -2,7 +2,7 @@
 <div class="item">
 
   <div class="status" [class.completed]="status"></div>
-  <div class="title" [class.title-completed]="status" (click)="toggleDetails()">{{ task.title }}</div>
+  <div class="title" [class.title-completed]="status" (click)="toggleDetails()">{{ task.title | titlecase}}</div>
 
   <div class="menu">
     <button class="delete" (click)="deleteTask()" >

@@ -1,3 +1,4 @@
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -19,6 +20,7 @@ import { TaskTrackerService } from './services/task-tracker.service';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FontAwesomeModule
 
   ],
   providers: [TaskService,TaskTrackerService],

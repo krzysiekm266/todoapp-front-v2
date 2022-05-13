@@ -1,12 +1,23 @@
 <!-- task-editor component -->
 <div class="editor">
-  <form  #form="ngForm" (ngSubmit)="addTask()">
+
+  <form [formGroup]="taskForm" (ngSubmit)="addTask()">
     <fieldset>
+      <span class="close-icon" (click)="closeTaskEditor()">
+        <fa-icon [icon]="faRectangleXmark"  size="2x"></fa-icon>
+      </span>
       <legend>New task</legend>
+      <!-- <div *ngIf="errorMsg" class="error">
+        <p class="">{{ errorMsg }} </p>
+      </div> -->
+      <div  class="error" >
+        <p class="">{{ taskForm.status }} {{ errorMsg }}  </p>
+      </div>
 
-      <input type="text" [formControl]="controlTitle" placeholder="task title...">
-
-      <button type="submit">Add</button>
+      <div class="task-fields">
+        <input type="text" formControlName="title" placeholder="task title..."(input)="onInputChange()">
+        <button type="submit">Add</button>
+      </div>
     </fieldset>
   </form>
 </div>

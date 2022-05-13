@@ -11,7 +11,7 @@
 
     width: 100%;
       legend {
-        background-color: aqua;
+
         border: 1px solid black;
         border-radius: 5px;
         padding: 6px;
@@ -23,17 +23,22 @@
         font-weight: bold;
         color: black;
         background-image: linear-gradient(45deg, rgba(255, 0, 0, 0.774),orange);
+
       }
 
       fieldset {
+        position: relative;
         padding: 8px;
+        gap: 8px;
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         justify-content: space-between;
         border: 2px solid black;
         border-radius: 5px;
         box-shadow: 2px 2px 5px black;
         min-height: 100px;
+
       }
 
       input[type="text"] {
@@ -43,17 +48,75 @@
         border-style: none;
         padding: 8px;
         box-shadow: 2px 2px 2px black;
+        background-image: linear-gradient(45deg,rgba(128, 127, 127, 0.534),rgb(255, 255, 255),rgb(255, 255, 255),rgba(105, 101, 101, 0.568));
 
       }
 
       button {
+        border-style: none;
         margin-left: 4px;
         width: 100px;
         height: 40px;
         border-style: none;
         box-shadow: 2px 2px 2px  black;
         border-radius: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: bold;
+        color: black;
+        background-image: linear-gradient(45deg, rgb(255, 208, 0),rgba(101, 2, 172, 0.507));
+        &:hover {
+          background-image: linear-gradient(45deg, rgb(255, 174, 0),rgba(219, 5, 5, 0.877));
+          box-shadow: 3px 3px 6px  black;
+
+        }
       }
   }
 
 }
+
+
+.task-fields {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: auto;
+  color:red;
+  background-color: aliceblue;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px  black;
+  padding: 4px;
+  background-image: linear-gradient(45deg,rgba(128, 127, 127, 0.534),rgb(255, 255, 255),rgb(255, 255, 255),rgba(105, 101, 101, 0.568));
+
+}
+
+.close-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  top: -30px;
+  right: -15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 2px 4px;
+  text-align: center;
+  box-shadow: 2px 2px 5px black;
+
+  width: auto;
+  height: auto;
+  background-image: linear-gradient(45deg, rgb(167, 8, 8),rgb(158, 3, 3));
+  &:hover {
+    background-image: linear-gradient(45deg,lighten(rgb(167, 8, 8),1%) ,lighten(rgb(158, 3, 3),15%));
+    cursor: pointer;
+  }
+}
+

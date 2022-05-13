@@ -1,11 +1,17 @@
 <!-- tasks-component -->
 <div class="tasks">
+  <div class="left-menu">
+    <button (click)="toggleTaskEditor()">
+      Task Editor
+    </button>
+    <button  class="icon" >
+      <fa-icon [icon]="faPenToSquare"  size="3x"></fa-icon>
+    </button>
 
-  <div class="home-button">
-    <fa-icon [icon]="faHouseChimney" size="2x"  routerLink="/"></fa-icon>
   </div>
-  <div class="editor">
-    <app-task-editor (onAddTask)="addTask($event)"></app-task-editor>
+
+  <div class="editor" [class.editor-visible]="showTaskEditor">
+    <app-task-editor (onAddTask)="addTask($event)" (onCloseTaskEditor)="closeTaskEditor($event)"></app-task-editor>
   </div>
 
   <div class="list">

@@ -2,7 +2,7 @@ import { TaskService } from '../../services/task.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Task } from 'src/app/modules/tasks/task';
 import { FormControl } from '@angular/forms';
-import { faHouseChimney } from "@fortawesome/free-solid-svg-icons";
+import { faHouseChimney ,faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
@@ -11,15 +11,25 @@ import { faHouseChimney } from "@fortawesome/free-solid-svg-icons";
 export class TasksComponent implements OnInit {
   //icons
   faHouseChimney = faHouseChimney;
+  faPenToSquare = faPenToSquare;
   //properties
   private taskList:Task[] = [];
-  controlTitle:FormControl = new FormControl('');
+  // controlTitle:FormControl = new FormControl('');
+  showTaskEditor:boolean = false;
+
 
   constructor(private taskService:TaskService) {
   }
 
   ngOnInit(): void {
      this.taskService.getTasks().subscribe( tasks =>{ this.taskList = tasks  });
+  }
+  closeTaskEditor(show:boolean) {
+    this.showTaskEditor = show;
+  }
+
+  toggleTaskEditor() {
+    this.showTaskEditor = !this.showTaskEditor;
   }
 
   getTasks() {
