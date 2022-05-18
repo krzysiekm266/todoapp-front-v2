@@ -4,20 +4,19 @@
   <form [formGroup]="taskForm" (ngSubmit)="addTask()">
     <fieldset>
       <span class="close-icon" (click)="closeTaskEditor()">
-        <fa-icon [icon]="faRectangleXmark"  size="2x"></fa-icon>
+        <fa-icon [icon]="faRectangleXmark"  size="1x"></fa-icon>
       </span>
       <legend>New task</legend>
-      <!-- <div *ngIf="errorMsg" class="error">
-        <p class="">{{ errorMsg }} </p>
-      </div> -->
-      <div  class="error" >
-        <p class="">{{ taskForm.status }} {{ errorMsg }}  </p>
-      </div>
 
       <div class="task-fields">
         <input type="text" formControlName="title" placeholder="task title..."(input)="onInputChange()">
-        <button type="submit">Add</button>
+        <button type="submit" [disabled]="!taskForm.valid">Add</button>
       </div>
     </fieldset>
   </form>
+
+  <div class="error" >
+    <app-task-error [error]="titleErrors?.['required']" msg="Title can't be empty!" ></app-task-error>
+    <app-task-error [error]="titleErrors?.['min']" msg="Minimum 3 characters!" ></app-task-error>
+  </div>
 </div>

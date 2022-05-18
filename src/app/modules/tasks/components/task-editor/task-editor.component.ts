@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input ,DoCheck} from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Task } from "../../task";
 import { TaskValidators } from "./task-editor-validators";
@@ -10,41 +10,49 @@ import { faRectangleXmark} from "@fortawesome/free-regular-svg-icons";
   styleUrls: ['./task-editor.component.scss']
 })
 export class TaskEditorComponent implements OnInit {
-
+  //icons
+  faRectangleXmark = faRectangleXmark;
+  //properties
+  @Input() task!:Task;
   @Output() private onAddTask = new EventEmitter<Task>();
   @Output() private onCloseTaskEditor = new EventEmitter<boolean>();
-  errorMsg:string | null = '';
-  //title:FormControl = new FormControl('');
+
   taskForm!: FormGroup ;
-  taskErrors:ValidationErrors | null | undefined = {};
-  faRectangleXmark = faRectangleXmark;
+  titleErrors:ValidationErrors = {};
 
 
   constructor(private fb:FormBuilder) {
 
   }
 
+  private setErrors() {
+    this.titleErrors = this.taskForm.get('title')?.errors as ValidationErrors;
+  }
   ngOnInit(): void {
     this.taskForm = this.fb.group({
-      title:['',[Validators.required,TaskValidators.min(3,'Title is to short!')] ],
+      title:['',[Validators.required,TaskValidators.min(3,'Title is to short!')] ] ,
     });
+
+    this.setErrors();
 
   }
 
+
+
+
   closeTaskEditor() {
+    this.taskForm.get('title')?.setValue('');
+    this.setErrors();
     return this.onCloseTaskEditor.emit(false);
   }
 
   onInputChange() {
-    this.taskErrors = this.taskForm.get('title')?.errors;
-    this.errorMsg = this.taskErrors?.['toShort']?.message;
+    this.setErrors();
+
   }
+
   addTask() {
     if(!this.taskForm.valid) {
-      //this.taskErrors = this.taskForm.get('title')?.errors;
-       //this.errorMsg = this.taskErrors?.['badTitle']?.message;
-      //this.errorMsg = this.taskForm.errors?.['badTitle'].message;
-      console.log(this.taskErrors);
 
       return;
     }
@@ -55,9 +63,11 @@ export class TaskEditorComponent implements OnInit {
       created_at:new Date(),
     }
     this.taskForm.get('title')?.setValue('');
-    this.errorMsg = '';
+    this.setErrors();
     return this.onAddTask.emit(task);
   }
+
+
 }
 
 

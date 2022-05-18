@@ -20,6 +20,7 @@ export class TaskItemComponent implements OnInit {
   @Output() onDeleteTask = new EventEmitter<Task>();
   @Output() onCompleteTask = new EventEmitter<Task>();
   @Output() onEditTask = new EventEmitter<Task>();
+  @Output() onSelectTask = new EventEmitter<Task>();
   //properties
   status:boolean = false;
   details:boolean = false;
@@ -34,6 +35,8 @@ export class TaskItemComponent implements OnInit {
 
   toggleDetails() {
     this.details = !this.details;
+    if(this.details) return this.onSelectTask.emit(this.task);
+
   }
 
   deleteTask() {

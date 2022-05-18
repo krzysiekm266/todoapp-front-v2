@@ -1,23 +1,19 @@
 <!-- tasks-component -->
 <div class="tasks">
-  <div class="left-menu">
-    <button (click)="toggleTaskEditor()">
-      Task Editor
-    </button>
-    <button  class="icon" >
-      <fa-icon [icon]="faPenToSquare"  size="3x"></fa-icon>
-    </button>
 
-  </div>
 
   <div class="editor" [class.editor-visible]="showTaskEditor">
-    <app-task-editor (onAddTask)="addTask($event)" (onCloseTaskEditor)="closeTaskEditor($event)"></app-task-editor>
+    <app-task-editor (onAddTask)="addTask($event)" (onCloseTaskEditor)="closeTaskEditor($event)" [task]="taskToEdit" > </app-task-editor>
   </div>
 
   <div class="list">
+    <button class="edit" (click)="toggleTaskEditor()" *ngIf="!showTaskEditor">
+      Task Editor
+    </button>
     <app-task-item *ngFor="let task of getTasks()" [task]="task"
       (onCompleteTask)="completeTask($event)"
-      (onDeleteTask)="deleteTask($event)">
+      (onDeleteTask)="deleteTask($event)"
+      (onEditTask)="openTaskEditor($event)">
     </app-task-item>
   </div>
 

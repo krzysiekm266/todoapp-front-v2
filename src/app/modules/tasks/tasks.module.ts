@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TasksComponent } from './tasks.component';
 import { TaskItemComponent } from './components/task-item/task-item.component';
 import { TaskEditorComponent } from './components/task-editor/task-editor.component';
+import { TaskErrorComponent } from './components/task-error/task-error.component';
 
 
 
@@ -14,7 +15,8 @@ import { TaskEditorComponent } from './components/task-editor/task-editor.compon
   declarations: [
     TasksComponent,
     TaskItemComponent,
-    TaskEditorComponent
+    TaskEditorComponent,
+    TaskErrorComponent
   ],
   imports: [
     CommonModule,

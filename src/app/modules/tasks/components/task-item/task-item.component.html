@@ -1,15 +1,18 @@
 <!-- task-item component -->
+<div [class.border]="details">
+
+
 <div class="item">
 
   <div class="status" [class.completed]="status"></div>
-  <div class="title" [class.title-completed]="status" (click)="toggleDetails()">{{ task.title | titlecase}}</div>
+  <div class="title" [class.title-completed]="status" (click)="toggleDetails()" >{{ task.title | titlecase}}</div>
 
-  <div class="menu">
+  <div *ngIf="details" class="menu">
     <button class="delete" (click)="deleteTask()" >
       <fa-icon [icon]="faTrashCan"  size="2x"></fa-icon>
       <!-- Delete -->
     </button>
-    <button class="edit" (click)="editTask()">
+    <button *ngIf="!status"class="edit" (click)="editTask()">
       <fa-icon [icon]="faPenToSquare"  size="2x"></fa-icon>
       <!-- Edit -->
     </button>
@@ -20,6 +23,7 @@
 
   </div>
 </div>
+
 <div *ngIf="details" class="details">
   <!-- <div>{{ task.id }}</div> -->
   <div class="timestamps">
@@ -35,3 +39,4 @@
 
 </div>
 
+</div>

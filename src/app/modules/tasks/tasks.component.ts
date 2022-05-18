@@ -1,18 +1,21 @@
 import { TaskService } from '../../services/task.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Task } from 'src/app/modules/tasks/task';
 import { FormControl } from '@angular/forms';
-import { faHouseChimney ,faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faHouseChimney ,faPenToSquare,faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
-  //icons
+  //font awesome icons
   faHouseChimney = faHouseChimney;
   faPenToSquare = faPenToSquare;
+  faAnglesRight = faAnglesRight;
   //properties
+  @Output() taskToEdit!:Task;
+
   private taskList:Task[] = [];
   // controlTitle:FormControl = new FormControl('');
   showTaskEditor:boolean = false;
@@ -35,6 +38,7 @@ export class TasksComponent implements OnInit {
   getTasks() {
     return this.taskList;
   }
+
 
   /**
    * intercept onTaskStored event and update taskList array
@@ -67,4 +71,13 @@ export class TasksComponent implements OnInit {
     this.taskService.updateTask(task).subscribe();
   }
 
+  /**
+   * intercept on EditTask event,open editor and pass task data
+   */
+  openTaskEditor(task:Task) {
+    this.taskToEdit = task;
+    this.showTaskEditor = true;
+    //console.log(this.taskToEdit);
+
+  }
 }
