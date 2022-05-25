@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
-<<<<<<< HEAD
-import { Task } from '../task';
-=======
 import { Task } from '../modules/tasks/task';
->>>>>>> e8c0897abab3dc84aaf8f3ad6c50a0dabc1e9691
 @Injectable({
   providedIn: 'root'
 })
