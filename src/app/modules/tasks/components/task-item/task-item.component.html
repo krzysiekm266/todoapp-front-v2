@@ -1,0 +1,42 @@
+<!-- task-item component -->
+<div [class.border]="details">
+
+
+<div class="item">
+
+  <div class="status" [class.completed]="status"></div>
+  <div class="title" [class.title-completed]="status" (click)="toggleDetails()" >{{ task.title | titlecase}}</div>
+
+  <div *ngIf="details" class="menu">
+    <button class="delete" (click)="deleteTask()" >
+      <fa-icon [icon]="faTrashCan"  size="2x"></fa-icon>
+      <!-- Delete -->
+    </button>
+    <button *ngIf="!status"class="edit" (click)="editTask()">
+      <fa-icon [icon]="faPenToSquare"  size="2x"></fa-icon>
+      <!-- Edit -->
+    </button>
+    <button *ngIf="!status" class="complete" (click)="completeTask()">
+      <fa-icon [icon]="faSquareCheck" size="2x"></fa-icon>
+      <!-- Complete -->
+    </button>
+
+  </div>
+</div>
+
+<div *ngIf="details" class="details">
+  <!-- <div>{{ task.id }}</div> -->
+  <div class="timestamps">
+    <div class="created-at">
+      <h4>Created:</h4>
+      <p>{{ task.created_at | date:'medium' }}</p>
+    </div>
+    <div class="completed-at" [class.incomplete]="!status">
+      <h4>Completed:</h4>
+      <p>{{task.completed_at ? (task.completed_at | date:'medium') :'---'}}</p>
+    </div>
+  </div>
+
+</div>
+
+</div>

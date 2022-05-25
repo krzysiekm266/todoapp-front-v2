@@ -1,0 +1,20 @@
+<!-- tasks-component -->
+<div class="tasks">
+
+
+  <div class="editor" [class.editor-visible]="showTaskEditor">
+    <app-task-editor (onAddTask)="addTask($event)" (onCloseTaskEditor)="closeTaskEditor($event)" [task]="taskToEdit" > </app-task-editor>
+  </div>
+
+  <div class="list">
+    <button class="edit" (click)="toggleTaskEditor()" *ngIf="!showTaskEditor">
+      Task Editor
+    </button>
+    <app-task-item *ngFor="let task of getTasks()" [task]="task"
+      (onCompleteTask)="completeTask($event)"
+      (onDeleteTask)="deleteTask($event)"
+      (onEditTask)="openTaskEditor($event)">
+    </app-task-item>
+  </div>
+
+</div>

@@ -1,0 +1,22 @@
+<!-- task-editor component -->
+<div class="editor">
+
+  <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+    <fieldset>
+      <span class="close-icon" (click)="closeTaskEditor()">
+        <fa-icon [icon]="faRectangleXmark"  size="1x"></fa-icon>
+      </span>
+      <legend>New task</legend>
+
+      <div class="task-fields">
+        <input type="text" formControlName="title" placeholder="task title..."(input)="onInputChange()">
+        <button type="submit" [disabled]="!taskForm.valid">Add</button>
+      </div>
+    </fieldset>
+  </form>
+
+  <div class="error" >
+    <app-task-error [error]="titleErrors?.['required']" msg="Title can't be empty!" ></app-task-error>
+    <app-task-error [error]="titleErrors?.['min']" msg="Minimum 3 characters!" ></app-task-error>
+  </div>
+</div>

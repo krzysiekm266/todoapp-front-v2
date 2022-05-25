@@ -1,0 +1,5 @@
+<div class="task-error" [class.valid]="!error">
+  <fa-icon *ngIf="!error" class="valid" [icon]="faCircleCheck"  size="1x"></fa-icon>
+  <fa-icon *ngIf="error" class="invalid" [icon]="faCircleXmark" size="1x" ></fa-icon>
+  <p >{{ msg }}</p>
+</div>
