@@ -1,4 +1,4 @@
-<div  class="app">
-  <a routerLink="tasks" >Tasks</a>
- </div>
+<div *ngIf="show" class="app">
+  <a routerLink="tasks" (click)="hideApp()">Tasks</a>
+</div>
 <router-outlet></router-outlet>
