@@ -7,5 +7,5 @@ This is desktop wersion(dont have RWD).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.4.
 Here there are some  print screens from dev version:
-![picture](https://github.com/krzysiekm266/todoapp-front-v2/src/assets/todoappscreen1.png)
+![picture](https://github.com/krzysiekm266/todoapp-front-v2/tree/master/src/assets/todoappscreen1.png)
 
