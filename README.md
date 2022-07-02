@@ -6,4 +6,5 @@ Works with backend(todoapp-back) that is on my github account.
 This is desktop wersion(dont have RWD).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.4.
-
+Here there are some  print screens from dev version:
+<img src="assets/todoappscreen1.png" alt="picture of task list"  width="400" height="400>
