@@ -10,11 +10,13 @@ import { AppComponent } from './app.component';
 
 import { TaskService } from './services/task.service';
 import { TaskTrackerService } from './services/task-tracker.service';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

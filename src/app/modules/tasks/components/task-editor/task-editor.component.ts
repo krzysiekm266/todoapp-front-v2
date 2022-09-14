@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Input ,DoCheck} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input ,OnChanges} from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Task } from "../../task";
 import { TaskValidators } from "./task-editor-validators";
@@ -14,7 +14,10 @@ export class TaskEditorComponent implements OnInit {
   faRectangleXmark = faRectangleXmark;
   //properties
   @Input() task!:Task;
+  @Input() isTaskExist:boolean = false;
   @Output() private onAddTask = new EventEmitter<Task>();
+  @Output() private onUpdateTask = new EventEmitter<Task>();
+
   @Output() private onCloseTaskEditor = new EventEmitter<boolean>();
 
   taskForm!: FormGroup ;
@@ -29,6 +32,7 @@ export class TaskEditorComponent implements OnInit {
     this.titleErrors = this.taskForm.get('title')?.errors as ValidationErrors;
   }
   ngOnInit(): void {
+
     this.taskForm = this.fb.group({
       title:['',[Validators.required,TaskValidators.min(3,'Title is to short!')] ] ,
     });
@@ -36,11 +40,17 @@ export class TaskEditorComponent implements OnInit {
     this.setErrors();
 
   }
+  ngOnChanges() {
 
+
+    this.isTaskExist = this.task != undefined;
+
+  }
 
 
 
   closeTaskEditor() {
+    this.isTaskExist = false;
     this.taskForm.get('title')?.setValue('');
     this.setErrors();
     return this.onCloseTaskEditor.emit(false);
@@ -62,11 +72,23 @@ export class TaskEditorComponent implements OnInit {
       completed:false,
       created_at:new Date(),
     }
+    this.isTaskExist = false;
     this.taskForm.get('title')?.setValue('');
     this.setErrors();
     return this.onAddTask.emit(task);
   }
 
+  updateTask() {
+    if(!this.taskForm.valid) {
+
+      return;
+    }
+    this.isTaskExist = false;
+    this.task.title = this.taskForm.get('title')?.value;
+    this.taskForm.get('title')?.setValue('');
+    this.setErrors();
+    return this.onUpdateTask.emit(this.task);
+  }
 
 }
 

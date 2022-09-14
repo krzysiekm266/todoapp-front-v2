@@ -30,6 +30,7 @@
   justify-content: center;
   gap: 12px;
   width: 60%;
+
 }
 
 .menu {
@@ -122,11 +123,13 @@
 }
 
 .page {
-
-  margin: auto auto;
-  margin-top: 20px;
-  justify-content: flex-start;
-  width: 80%;
+  margin: auto;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
   height: auto;
+
 
 }

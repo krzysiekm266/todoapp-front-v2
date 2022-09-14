@@ -1,7 +1,7 @@
 <!-- task-editor component -->
 <div class="editor">
 
-  <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+  <form [formGroup]="taskForm" (ngSubmit)="isTaskExist ? updateTask() : addTask()">
     <fieldset>
       <span class="close-icon" (click)="closeTaskEditor()">
         <fa-icon [icon]="faRectangleXmark"  size="1x"></fa-icon>
@@ -9,8 +9,8 @@
       <legend>New task</legend>
 
       <div class="task-fields">
-        <input type="text" formControlName="title" placeholder="task title..."(input)="onInputChange()">
-        <button type="submit" [disabled]="!taskForm.valid">Add</button>
+        <input type="text" formControlName="title" placeholder="task title..."  value="{{isTaskExist ? task.title : ''}}" (input)="onInputChange()" >
+        <button type="submit" [disabled]="!taskForm.valid">{{isTaskExist ? 'Update' : 'Add' }}</button>
       </div>
     </fieldset>
   </form>

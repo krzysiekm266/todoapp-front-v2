@@ -25,7 +25,7 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     this.taskService.getTasks().subscribe( tasks =>{ this.taskList = tasks  });
+     this.taskService.getTasks().subscribe( tasks => { this.taskList = tasks  } );
   }
   closeTaskEditor(show:boolean) {
     this.showTaskEditor = show;
